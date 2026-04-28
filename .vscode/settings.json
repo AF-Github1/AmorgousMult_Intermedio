@@ -1,0 +1,10 @@
+{
+    "python-envs.defaultEnvManager": "ms-python.python:system",
+    "python.linting.pylintArgs": [
+    "--extension-pkg-whitelist=lxml"  // The extension is "lxml", not "1xml"
+    
+],
+"pylint.args": [ "--extension-pkg-whitelist=pygame" ], "python.analysis.extraPaths": [ "${workspaceFolder}" ], "standard.enableGlobally": true
+
+
+}
