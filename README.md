@@ -8,19 +8,33 @@ Denotar que neste repositório existem pastas e módulos que de momento não est
 
 AMORGOUSMULT_INTERMEDIO
 ├── client
+
 │   ├── clientChoice.py
+
 │   ├── host.py
+
 ├── information
+
 │   └── generic.py
+
 ├── pygame_calls
+
 │   ├── game
+
 │   │   ├── gameLogic.py
+
 ├── server
+
 │   ├── clientList.py
+
 │   ├── connectionHandler.py
+
 │   ├── gameState.py
+
 │   ├── positionBroadcast.py
+
 │   └── serverLogic.py
+
 └── main.py
 
 **main.py**
