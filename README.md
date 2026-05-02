@@ -1,4 +1,4 @@
-Descrição do funcionamento do estado actual do projecto, da forma como está neste repositório
+# **Descrição do funcionamento do estado actual do projecto**
 
 
 
@@ -10,37 +10,37 @@ AMORGOUSMULT_INTERMEDIO
 
 ├── client
 
-│   ├── clientChoice.py
+│   ├── clientChoice.py     # Inicialização de clientes
 
-│   ├── host.py
+│   ├── host.py             # Lógica principal do cliente e de renderização
 
 ├── information
 
-│   └── generic.py
+│   └── generic.py          # Constantes, protocolos e configurações de rede estáticas
 
 ├── pygame_calls
 
-│   ├── game
+│   └── game
 
-│   │   ├── gameLogic.py
+│       └── gameLogic.py    # Lógica do movimento de cada jogador, através de Pygame
 
 ├── server
 
-│   ├── clientList.py
+│   ├── clientList.py       # Gestão dos clientes ligados
 
-│   ├── connectionHandler.py
+│   ├── connectionHandler.py# Gestão de novas ligações
 
-│   ├── gameState.py
+│   ├── gameState.py        # Gestão do estado global do jogo
 
-│   ├── positionBroadcast.py
+│   ├── positionBroadcast.py# Thread para partilhar dados de posição
 
-│   └── serverLogic.py
+│   └── serverLogic.py      # Lógica para permitir ligações entre jogadores
 
-└── main.py
+└── main.py                 # Inicialização de threads do servidor
 
-**main.py**
+# **main.py**
 
-Chama as thread para realizar a comunicação entre cliente e servidor, presentes em server/serverLogic.py e server/connectionHandler.py e a thread responsável por transmitir informação para todos os clientes ligados ao servidor, através de server/positionBroadcast
+Chama as threads para realizar a comunicação entre cliente e servidor, presentes em server/serverLogic.py e server/connectionHandler.py e a thread responsável por transmitir informação para todos os clientes ligados ao servidor, através de server/positionBroadcast
 
 
 # **server**
@@ -53,7 +53,7 @@ Além das funções que lidam com a transmissão de dados por sockets, introduzi
 e instructionHandler, responsável pela lógica de como lidar com os clientes.
 
 Deve-se notar que na refactorização do código desta entrega, o dicionário de "positions" deixa de ser relevante porque a lógica presente em server/gameState é que permite manter e manipular a informação sobre a posição de cada cliente.
-A forma de como o servidor então consegue actualizar a lista, é através de mensagens recebidas através dos clientes. Sempre que um cliente envia uma mensagem com o servidor para a operação de mover (MOVE_OP em generic.py), o servidor prepara-se para receber a mensagem
+A forma de como o servidor então consegue actualizar a lista, é através de mensagens recebidas através dos clientes. Sempre que um cliente envia uma mensagem ao servidor para a operação de mover (MOVE_OP em generic.py), o servidor prepara-se para receber a mensagem
 para a posição actualizada desse mesmo cliente, actualizando o dicionário de posições. Em caso de falha por quebra de ligação, o cliente será removido da lista de clientes.
 
 **server/positionBroadcast.py**
@@ -66,7 +66,7 @@ Itera através do dicionário de clientes, e envia o dicionário contendo todas 
 Contém a lógica para a criação da thread responsável para aceitar as ligações por parte dos clientes, abrindo o socket em modo de listening e chamar as funções de clientList.py através da instância clientList de forma a adicionar novos clientes ao dicionário de clientes
 e verificar o número actual de clientes.
 Adicionalmente, também é responsável por definir o número de cada jogador de forma a definir o esquema de controlo que os jogadores usarão. Isto foi feito devido à parte gráfica ainda não conter um menu, e ser preciso alguma forma para distinguir os jogadores.
-Na implementação completa de pygame, o esquema de controlo será definido pelo jogador em si através de um menu e não por pela ordem em que os clientes se ligam ao servidor.
+Na implementação completa de , o esquema de controlo será definido pelo jogador em si através de um menu e não pela ordem em que os clientes se ligam ao servidor.
 
 **server/clientList.py**
 
@@ -97,7 +97,7 @@ vazio.
 
 # **pygame_calls/game**
 
-Contém os módulos necessários para as ações que um jogador poderá fazer e a lógico dos inimigos e obstáculos que o jogador terá de enfrentar enquanto o jogo decorre.
+Contém os módulos necessários para as ações que um jogador poderá fazer e a lógica dos inimigos e obstáculos que o jogador terá de enfrentar enquanto o jogo decorre.
 
 **game/gameLogic.py**
 
@@ -116,11 +116,11 @@ Chama o módulo de host.py de forma a criar um cliente, sempre que este programa
 
 Contém a classe de Host, que define os atributos usados para definir a ligação ao servidor, e os atributos que controlam a posição / velocidade do jogador.
 
-Como indicado antes, de momento a ordem pela qual os jogadores se ligam é que define o esquema de controlo. O esquema de controlado é definido no atributo de self.controls e é utilizado quando se chama os métodos de GameOperations, em gameLogic.py, que lidam 
+Como indicado antes, de momento a ordem pela qual os jogadores se ligam é que define o esquema de controlo. O esquema de controlo é definido no atributo de self.controls e é utilizado quando se chama os métodos de GameOperations, em gameLogic.py, que lidam 
 com a translação de inputs do jogador para movimento no ecrã, actualizando a posição do jogador de acordo com o valor de velocidade associado.
 
 O loop principal encontra-se na função de execute.
-Quando chamada é inicializada o relógio de pygames (de forma a controlar a framerate e garantir que o host está sincronizado com os restantes elementos do jogo) e é também inicializado a janela de pygames, onde o ambiente gráfico será colocado.
+Quando chamada é inicializado o relógio de Pygame (de forma a controlar a framerate e garantir que o host está sincronizado com os restantes elementos do jogo) e é também inicializada a janela de Pygame, onde o ambiente gráfico será colocado.
 
 Por cada iteração no loop é actualizada a posição do jogador. Se o jogador tiver mudado de posição desde a última iteração, é enviada uma mensagem com a operação de MOVE_OP, de forma a identificar que o jogador está a realizar uma ação de movimento, e é enviada para o
 servidor a nova posição.
