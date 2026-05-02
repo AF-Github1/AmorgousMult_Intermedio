@@ -7,6 +7,7 @@ Descrição do funcionamento do estado actual do projecto, da forma como está n
 Denotar que neste repositório existem pastas e módulos que de momento não estão a ser usados, estão apenas indicados para referência futura do que será acrescentado. O esquema hierarquico abaixo demonstra os módulos que estão activos.
 
 AMORGOUSMULT_INTERMEDIO
+
 ├── client
 
 │   ├── clientChoice.py
