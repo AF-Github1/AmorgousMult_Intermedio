@@ -22,7 +22,7 @@ AMORGOUSMULT_INTERMEDIO
 
 │   └── game
 
-│       └── gameLogic.py    # Lógica do movimento de cada jogador, através de Pygame
+│         └── gameLogic.py    # Lógica do movimento de cada jogador, através de Pygame
 
 ├── server
 
